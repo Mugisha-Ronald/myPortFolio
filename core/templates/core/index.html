@@ -1,0 +1,160 @@
+{% extends 'core/base.html' %}
+{% load static %}
+
+{% block content %}
+<!-- LEFT SIDEBAR CARD -->
+<aside class="sidebar">
+    <div class="profile-info">
+        <figure class="avatar-box">
+            <img src="{% static 'core/images/profile.jpg' %}" alt="Profile Picture">
+        </figure>
+        <h1 class="name">Mugisha Ronald</h1>
+        <p class="title">Developer • Entrepreneur</p>
+        <p class="title">Digital Forensics & Information Security Practitioner</p>
+    </div>
+
+    <div class="contact-info">
+        <div class="contact-item">
+            <p class="label">GMAIL</p>
+            <p class="value">ronaldmugisha993@gmail.com</p>
+            <p class="value">mugishacoder@gmail.com</p>
+        </div>
+        <div class="contact-item">
+            <p class="label">LINKEDIN</p>
+            <p class="value">https://www.linkedin.com/in/mugisha-ronald/</p>
+        </div>
+        <div class="contact-item">
+            <p class="label">CONTACT</p>
+            <p class="value">+256779047469</p>
+            <p class="value">+256791695666</p>
+        </div>
+
+
+        <div class="contact-item">
+            <p class="label">GITHUB</p>
+           
+
+           <a href="https://github.com/Mugisha-Ronald" style="color: darkred;">Visit My github page</a>
+            
+        </div>
+    </div>
+</aside>
+
+<!-- MAIN CONTENT CARD -->
+<main class="main-content">
+    <nav class="navbar">
+        <ul class="nav-list">
+            <li><a href="#" class="nav-link active">About</a></li>
+            <li><a href="https://docs.google.com/document/d/1PjCGObB2bTA8HItvYuJhJdVI2HHkE-APDANDno8swo8/edit?pli=1&tab=t.0#heading=h.y7d3xdxnr44m" class="nav-link">Resume</a></li>
+            <!-- <li><a href="#" class="nav-link">Portfolio</a></li> -->
+            <!-- <li><a href="#" class="nav-link">Blog</a></li> -->
+            <li><a href="#" class="nav-link">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="about-section">
+        <h2 class="section-title">About Me</h2>
+        <p class="description">I am passionate about solving complex problems through technology and developing solutions that are both innovative and secure. My interests include Software Engineering, Artificial Intelligence, Cybersecurity, Digital Forensics, and Threat Intelligence.</p>
+    </section>
+
+    <section class="services-section">
+        <h3 class="subsection-title">What I'm Doing</h3>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="{% static 'core/images/cyber-security.png' %}" alt="Forensics">
+                <div class="service-text">
+                    <h4>Digital Forensics Imaging Tool</h4>
+                    <p>One of the projects that I am working on currently is building a very efficient digital forensics imaginng tool, emphasis is on threrading and multi threading, here the aim is ti improve the speed of Imaging, targeting 1TB of data being imaged in less than 30 minutes</p>
+                    <!-- <a href="https://github.com/Mugisha-Ronald/ImagingTool" >see project</a> -->
+                    <a href="https://github.com/Mugisha-Ronald/ImagingTool" style="color: darkred;">See Project</a>
+                </div>
+            </div>
+            <div class="service-card">
+                <img src="{% static 'core/images/antivirus.png' %}"  alt="Malware">
+                <div class="service-text">
+                    <h4>Malware detection and Intelligence Platform</h4>
+                    <p>An AI-Powered Financial Fraud Detection & Malware Threat Intelligence Platform for detecting suspicious financial transactions,
+                        malware-related threats, and supporting cybersecurity investigations.</p>
+                    <a href="https://github.com/Mugisha-Ronald/MinorProject" style="color: darkred;">See Project</a>
+                </div>
+            </div>
+
+             <div class="service-card">
+                <img src="{% static 'core/images/data-gathering (2).png' %}" alt="Pen Testing">
+                <div class="service-text">
+                    <h4>OSINT Project</h4>
+                    
+                    <br>
+                    <p>It allows users to search for usernames across popular social media platforms, perform IP geolocation lookups, retrieve WHOIS information for domains, and extract metadata (EXIF data) from image files for digital investigation purposes.</p>
+                    <br>
+                    <p>The application integrates external services and libraries such as Requests, WHOIS, and Pillow (PIL) to gather publicly available intelligence and present the results within a centralized cybersecurity and OSINT analysis tool.</p>
+                    <a href="https://github.com/Mugisha-Ronald/OSINT_Project" style="color: darkred;">See Project</a>
+                </div>
+            </div>
+
+             <!-- <div class="service-card">
+                <img src="{% static 'core/images/pen-testing-icon.png' %}" alt="Pen Testing">
+                <div class="service-text">
+                    <h4>Penetration Testing</h4>
+                    <p>I conduct authorized penetration testing...</p>
+                </div>
+            </div> -->
+        </div>
+  
+    </section>
+
+
+    <section class="services-section">
+        <h3 class="subsection-title">Done Projects</h3>
+        <div class="services-grid">
+            <div class="service-card">
+                <img src="{% static 'core/images/django.png' %}" alt="Web Dev">
+                <div class="service-text">
+                    <h4>Django CRUD Application</h4>
+                    <p>This is a a django todo app that let you create, Read, update and delete what ever task you could have at hand
+                        It can be used by someone to plan out their day by creating particular tasks and later in the day mark them as completed or not completed</p>
+                        <a href="https://github.com/Mugisha-Ronald/Django-CRUD-App" style="color: darkred;">See Project</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <img src="{% static 'core/images/circle.svg' %}" alt="Web Dev">
+                <div class="service-text">
+                    <h4>React Video Library</h4>
+                    <p>This is a react movie library that display queried movies from an API and allows logged in users to buy a movie</p>
+                    <br>
+                    <br>
+                    <br>
+                        <a href="https://github.com/Mugisha-Ronald/myReact-Test-VideoLibrary" style="color: darkred;">See Project</a>
+                </div>
+            </div>
+
+             <div class="service-card">
+                <img src="{% static 'core/images/github.svg' %}" alt="Web Dev">
+                <div class="service-text">
+                    <h4>Git Hub Profile Generator</h4>
+                    <p>The GitHub Profile Generator is a web application developed using React that allows users to search for GitHub profiles and automatically generate a visually appealing profile dashboard using data fetched from the GitHub API.
+
+The application provides a simplified way of viewing GitHub user information, repositories, followers, and development statistics in a single interface.</p>
+                        <a href="https://github.com/Mugisha-Ronald/Github-Profile-Generator" style="color: darkred;">See Project</a>
+                </div>
+            </div>
+
+
+             <div class="service-card">
+                <img src="{% static 'core/images/api.webp' %}" alt="Web Dev">
+                <div class="service-text">
+                    <h4>Polls API in Python</h4>
+                    <p>The Polls API is a RESTful web service developed in Python that enables users to create polls, manage voting options, cast votes, and retrieve poll results through API endpoints.
+
+The project demonstrates backend application development using Python and API design principles to facilitate efficient data exchange between clients and servers.</p>
+                        <a href="https://github.com/Mugisha-Ronald/Polls_API" style="color: darkred;">See Project</a>
+                </div>
+            </div>
+        </div>
+  
+    </section>
+
+    
+</main>
+{% endblock %}
