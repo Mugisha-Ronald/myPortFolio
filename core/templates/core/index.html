@@ -2,160 +2,1233 @@
 {% load static %}
 
 {% block content %}
-<!-- LEFT SIDEBAR CARD -->
-<aside class="sidebar">
-    <div class="profile-info">
-        <figure class="avatar-box">
-            <img src="{% static 'core/images/profile.jpg' %}" alt="Profile Picture">
-        </figure>
-        <h1 class="name">Mugisha Ronald</h1>
-        <p class="title">Developer • Entrepreneur</p>
-        <p class="title">Digital Forensics & Information Security Practitioner</p>
+
+<style>
+    /* =========================================================
+       PORTFOLIO PAGE
+       ========================================================= */
+
+    :root {
+        --bg-primary: #060914;
+        --bg-secondary: #0b1020;
+        --card-bg: rgba(15, 23, 42, 0.72);
+
+        --text-primary: #f1f5f9;
+        --text-secondary: #94a3b8;
+
+        --cyan: #22d3ee;
+        --blue: #3b82f6;
+        --purple: #8b5cf6;
+        --green: #34d399;
+
+        --border: rgba(148, 163, 184, 0.13);
+
+        --shadow:
+            0 20px 60px rgba(0, 0, 0, 0.35);
+    }
+
+
+    /* =========================================================
+       PAGE BACKGROUND
+       ========================================================= */
+
+    .portfolio-page {
+        min-height: 100vh;
+        padding: 35px;
+        background:
+            radial-gradient(
+                circle at 10% 10%,
+                rgba(34, 211, 238, 0.08),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 90% 15%,
+                rgba(139, 92, 246, 0.10),
+                transparent 30%
+            ),
+            radial-gradient(
+                circle at 50% 90%,
+                rgba(59, 130, 246, 0.08),
+                transparent 35%
+            ),
+            var(--bg-primary);
+
+        color: var(--text-primary);
+    }
+
+
+    /* =========================================================
+       MAIN LAYOUT
+       ========================================================= */
+
+    .portfolio-wrapper {
+        width: min(1450px, 100%);
+        margin: auto;
+
+        display: grid;
+        grid-template-columns: 320px 1fr;
+        gap: 25px;
+    }
+
+
+    /* =========================================================
+       SIDEBAR
+       ========================================================= */
+
+    .sidebar {
+        position: sticky;
+        top: 25px;
+        height: fit-content;
+
+        padding: 28px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(15, 23, 42, 0.95),
+                rgba(8, 13, 27, 0.90)
+            );
+
+        border: 1px solid var(--border);
+        border-radius: 25px;
+
+        box-shadow: var(--shadow);
+
+        backdrop-filter: blur(18px);
+    }
+
+
+    /* =========================================================
+       PROFILE
+       ========================================================= */
+
+    .profile-info {
+        text-align: center;
+        padding-bottom: 25px;
+
+        border-bottom: 1px solid var(--border);
+    }
+
+
+    .avatar-box {
+        width: 125px;
+        height: 125px;
+
+        margin: 0 auto 20px;
+
+        padding: 4px;
+
+        border-radius: 50%;
+
+        background:
+            linear-gradient(
+                135deg,
+                var(--cyan),
+                var(--purple)
+            );
+
+        box-shadow:
+            0 0 30px rgba(34, 211, 238, 0.15);
+    }
+
+
+    .avatar-box img {
+        width: 100%;
+        height: 100%;
+
+        object-fit: cover;
+
+        border-radius: 50%;
+
+        border: 4px solid #080d1b;
+    }
+
+
+    .name {
+        font-size: 1.55rem;
+        font-weight: 800;
+
+        margin-bottom: 8px;
+
+        background:
+            linear-gradient(
+                90deg,
+                #ffffff,
+                #a5f3fc
+            );
+
+        -webkit-background-clip: text;
+        background-clip: text;
+
+        color: transparent;
+    }
+
+
+    .title {
+        color: var(--text-secondary);
+
+        font-size: 0.86rem;
+
+        line-height: 1.6;
+
+        margin-top: 5px;
+    }
+
+
+    /* =========================================================
+       CONTACT INFORMATION
+       ========================================================= */
+
+    .contact-info {
+        margin-top: 25px;
+
+        display: flex;
+        flex-direction: column;
+
+        gap: 18px;
+    }
+
+
+    .contact-item {
+        padding-bottom: 17px;
+
+        border-bottom: 1px solid rgba(148, 163, 184, 0.08);
+    }
+
+
+    .label {
+        font-size: 0.68rem;
+
+        font-weight: 800;
+
+        letter-spacing: 1.5px;
+
+        color: var(--cyan);
+
+        margin-bottom: 7px;
+    }
+
+
+    .value {
+        color: var(--text-secondary);
+
+        font-size: 0.82rem;
+
+        line-height: 1.6;
+
+        word-break: break-word;
+    }
+
+
+    .value:hover {
+        color: var(--cyan);
+    }
+
+
+    .sidebar-link {
+        color: var(--text-secondary);
+
+        font-size: 0.82rem;
+
+        transition: 0.25s ease;
+    }
+
+
+    .sidebar-link:hover {
+        color: var(--cyan);
+    }
+
+
+    /* =========================================================
+       MAIN CONTENT
+       ========================================================= */
+
+    .main-content {
+        min-width: 0;
+
+        padding: 30px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(15, 23, 42, 0.82),
+                rgba(7, 12, 25, 0.88)
+            );
+
+        border: 1px solid var(--border);
+
+        border-radius: 25px;
+
+        box-shadow: var(--shadow);
+
+        backdrop-filter: blur(18px);
+    }
+
+
+    /* =========================================================
+       NAVIGATION
+       ========================================================= */
+
+    .navbar {
+        display: flex;
+
+        justify-content: flex-end;
+
+        margin-bottom: 45px;
+    }
+
+
+    .nav-list {
+        display: flex;
+
+        align-items: center;
+
+        gap: 8px;
+
+        list-style: none;
+
+        padding: 7px;
+
+        border-radius: 14px;
+
+        background: rgba(255, 255, 255, 0.025);
+
+        border: 1px solid var(--border);
+    }
+
+
+    .nav-link {
+        display: block;
+
+        padding: 10px 16px;
+
+        border-radius: 10px;
+
+        color: var(--text-secondary);
+
+        font-size: 0.84rem;
+
+        font-weight: 600;
+
+        transition: 0.25s ease;
+    }
+
+
+    .nav-link:hover,
+    .nav-link.active {
+        color: white;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(34, 211, 238, 0.13),
+                rgba(139, 92, 246, 0.13)
+            );
+
+        box-shadow:
+            inset 0 0 20px rgba(34, 211, 238, 0.04);
+    }
+
+
+    /* =========================================================
+       ABOUT
+       ========================================================= */
+
+    .about-section {
+        max-width: 900px;
+
+        margin-bottom: 55px;
+    }
+
+
+    .section-title {
+        position: relative;
+
+        display: inline-block;
+
+        font-size: 2rem;
+
+        margin-bottom: 20px;
+    }
+
+
+    .section-title::after {
+        content: "";
+
+        position: absolute;
+
+        left: 0;
+
+        bottom: -8px;
+
+        width: 55%;
+
+        height: 3px;
+
+        border-radius: 5px;
+
+        background:
+            linear-gradient(
+                90deg,
+                var(--cyan),
+                var(--purple)
+            );
+    }
+
+
+    .description {
+        color: var(--text-secondary);
+
+        line-height: 1.9;
+
+        font-size: 0.98rem;
+    }
+
+
+    /* =========================================================
+       SECTION HEADINGS
+       ========================================================= */
+
+    .subsection-title {
+        font-size: 1.35rem;
+
+        margin-bottom: 22px;
+
+        color: #e2e8f0;
+    }
+
+
+    .subsection-title::before {
+        content: "// ";
+
+        color: var(--cyan);
+    }
+
+
+    .services-section {
+        margin-bottom: 60px;
+    }
+
+
+    /* =========================================================
+       PROJECT GRID
+       ========================================================= */
+
+    .services-grid {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: 20px;
+    }
+
+
+    /* =========================================================
+       PROJECT CARD
+       ========================================================= */
+
+    .service-card {
+        position: relative;
+
+        display: flex;
+
+        gap: 20px;
+
+        padding: 23px;
+
+        min-height: 230px;
+
+        background:
+            linear-gradient(
+                145deg,
+                rgba(17, 28, 50, 0.82),
+                rgba(8, 14, 28, 0.90)
+            );
+
+        border: 1px solid var(--border);
+
+        border-radius: 20px;
+
+        overflow: hidden;
+
+        transition:
+            transform 0.3s ease,
+            border-color 0.3s ease,
+            box-shadow 0.3s ease;
+    }
+
+
+    .service-card::before {
+        content: "";
+
+        position: absolute;
+
+        width: 100px;
+        height: 100px;
+
+        top: -50px;
+        right: -50px;
+
+        border-radius: 50%;
+
+        background: var(--cyan);
+
+        filter: blur(60px);
+
+        opacity: 0.08;
+
+        transition: 0.3s ease;
+    }
+
+
+    .service-card:hover {
+        transform: translateY(-7px);
+
+        border-color:
+            rgba(34, 211, 238, 0.28);
+
+        box-shadow:
+            0 18px 45px rgba(0, 0, 0, 0.3);
+    }
+
+
+    .service-card:hover::before {
+        opacity: 0.18;
+    }
+
+
+    /* =========================================================
+       PROJECT ICON
+       ========================================================= */
+
+    .service-card > img {
+        width: 62px;
+        height: 62px;
+
+        flex-shrink: 0;
+
+        object-fit: contain;
+
+        padding: 12px;
+
+        border-radius: 15px;
+
+        background:
+            linear-gradient(
+                135deg,
+                rgba(34, 211, 238, 0.10),
+                rgba(139, 92, 246, 0.12)
+            );
+
+        border: 1px solid
+            rgba(148, 163, 184, 0.10);
+    }
+
+
+    /* =========================================================
+       PROJECT CONTENT
+       ========================================================= */
+
+    .service-text {
+        position: relative;
+        z-index: 2;
+    }
+
+
+    .service-text h4 {
+        font-size: 1rem;
+
+        margin-bottom: 10px;
+
+        color: #f8fafc;
+    }
+
+
+    .service-text p {
+        color: var(--text-secondary);
+
+        font-size: 0.84rem;
+
+        line-height: 1.7;
+
+        margin-bottom: 14px;
+    }
+
+
+    .project-link {
+        display: inline-flex;
+
+        align-items: center;
+
+        gap: 6px;
+
+        color: var(--cyan);
+
+        font-size: 0.82rem;
+
+        font-weight: 700;
+
+        transition: 0.25s ease;
+    }
+
+
+    .project-link:hover {
+        color: white;
+
+        transform: translateX(4px);
+    }
+
+
+    /* =========================================================
+       RESPONSIVE DESIGN
+       ========================================================= */
+
+    @media (max-width: 1050px) {
+
+        .portfolio-wrapper {
+            grid-template-columns: 270px 1fr;
+        }
+
+        .services-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+
+
+    @media (max-width: 800px) {
+
+        .portfolio-page {
+            padding: 15px;
+        }
+
+        .portfolio-wrapper {
+            grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+            position: relative;
+            top: 0;
+        }
+
+        .main-content {
+            padding: 22px;
+        }
+
+        .navbar {
+            justify-content: center;
+        }
+
+        .nav-list {
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+    }
+
+
+    @media (max-width: 500px) {
+
+        .portfolio-page {
+            padding: 8px;
+        }
+
+        .sidebar,
+        .main-content {
+            border-radius: 18px;
+        }
+
+        .main-content {
+            padding: 18px;
+        }
+
+        .service-card {
+            flex-direction: column;
+        }
+
+        .service-card > img {
+            width: 55px;
+            height: 55px;
+        }
+
+        .section-title {
+            font-size: 1.65rem;
+        }
+    }
+</style>
+
+
+<div class="portfolio-page">
+
+    <div class="portfolio-wrapper">
+
+
+        <!-- =====================================================
+             LEFT SIDEBAR
+             ===================================================== -->
+
+        <aside class="sidebar">
+
+            <div class="profile-info">
+
+                <figure class="avatar-box">
+
+                    <img
+                        src="{% static 'core/images/profile.jpg' %}"
+                        alt="Profile Picture"
+                    >
+
+                </figure>
+
+
+                <h1 class="name">
+                    Mugisha Ronald
+                </h1>
+
+
+                <p class="title">
+                    Developer • Entrepreneur
+                </p>
+
+
+                <p class="title">
+                    Digital Forensics & Information
+                    Security Practitioner
+                </p>
+
+            </div>
+
+
+            <div class="contact-info">
+
+
+                <!-- EMAIL -->
+
+                <div class="contact-item">
+
+                    <p class="label">
+                        GMAIL
+                    </p>
+
+                    <p class="value">
+                        ronaldmugisha993@gmail.com
+                    </p>
+
+                    <p class="value">
+                        mugishacoder@gmail.com
+                    </p>
+
+                </div>
+
+
+                <!-- LINKEDIN -->
+
+                <div class="contact-item">
+
+                    <p class="label">
+                        LINKEDIN
+                    </p>
+
+                    <a
+                        href="https://www.linkedin.com/in/mugisha-ronald/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="sidebar-link"
+                    >
+                        linkedin.com/in/mugisha-ronald
+                    </a>
+
+                </div>
+
+
+                <!-- PHONE -->
+
+                <div class="contact-item">
+
+                    <p class="label">
+                        CONTACT
+                    </p>
+
+                    <p class="value">
+                        +256 779 047 469
+                    </p>
+
+                    <p class="value">
+                        +256 791 695 666
+                    </p>
+
+                </div>
+
+
+                <!-- GITHUB -->
+
+                <div class="contact-item">
+
+                    <p class="label">
+                        GITHUB
+                    </p>
+
+                    <a
+                        href="https://github.com/Mugisha-Ronald"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="sidebar-link"
+                    >
+                        Visit My GitHub Page →
+                    </a>
+
+                </div>
+
+            </div>
+
+        </aside>
+
+
+
+        <!-- =====================================================
+             MAIN CONTENT
+             ===================================================== -->
+
+        <main class="main-content">
+
+
+            <!-- =================================================
+                 NAVIGATION
+                 ================================================= -->
+
+            <nav class="navbar">
+
+                <ul class="nav-list">
+
+                    <li>
+                        <a
+                            href="#"
+                            class="nav-link active"
+                        >
+                            About
+                        </a>
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="https://docs.google.com/document/d/1PjCGObB2bTA8HItvYuJhJdVI2HHkE-APDANDno8swo8/edit?pli=1&tab=t.0#heading=h.y7d3xdxnr44m"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="nav-link"
+                        >
+                            Resume
+                        </a>
+
+                    </li>
+
+
+                    <li>
+
+                        <a
+                            href="{% url 'contact_page' %}"
+                            class="nav-link"
+                        >
+                            Contact
+                        </a>
+
+                    </li>
+
+                </ul>
+
+            </nav>
+
+
+
+            <!-- =================================================
+                 ABOUT SECTION
+                 ================================================= -->
+
+            <section class="about-section">
+
+                <h2 class="section-title">
+                    About Me
+                </h2>
+
+
+                <p class="description">
+
+                    I am passionate about solving complex
+                    problems through technology and developing
+                    solutions that are both innovative and secure.
+
+                    My interests include Software Engineering,
+                    Artificial Intelligence, Cybersecurity,
+                    Digital Forensics, and Threat Intelligence.
+
+                </p>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CURRENT PROJECTS
+                 ================================================= -->
+
+            <section class="services-section">
+
+                <h3 class="subsection-title">
+                    What I'm Doing
+                </h3>
+
+
+                <div class="services-grid">
+
+
+                    <!-- DIGITAL FORENSICS -->
+
+                    <div class="service-card">
+
+                        <img
+                            src="{% static 'core/images/cyber-security.png' %}"
+                            alt="Digital Forensics"
+                        >
+
+
+                        <div class="service-text">
+
+                            <h4>
+                                Digital Forensics Imaging Tool
+                            </h4>
+
+
+                            <p>
+
+                                One of the projects that I am
+                                currently working on is building
+                                an efficient digital forensics
+                                imaging tool.
+
+                                The focus is on threading and
+                                multiprocessing to improve the
+                                speed of forensic imaging, with
+                                a target of imaging 1TB of data
+                                in less than 30 minutes.
+
+                            </p>
+
+
+                            <a
+                                href="https://github.com/Mugisha-Ronald/ImagingTool"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link"
+                            >
+                                See Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- MALWARE -->
+
+                    <div class="service-card">
+
+                        <img
+                            src="{% static 'core/images/antivirus.png' %}"
+                            alt="Malware Detection"
+                        >
+
+
+                        <div class="service-text">
+
+                            <h4>
+                                Malware Detection and
+                                Intelligence Platform
+                            </h4>
+
+
+                            <p>
+
+                                An AI-powered Financial Fraud
+                                Detection and Malware Threat
+                                Intelligence Platform for
+                                detecting suspicious financial
+                                transactions, malware-related
+                                threats, and supporting
+                                cybersecurity investigations.
+
+                            </p>
+
+
+                            <a
+                                href="https://github.com/Mugisha-Ronald/MinorProject"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link"
+                            >
+                                See Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- OSINT -->
+
+                    <div class="service-card">
+
+                        <img
+                            src="{% static 'core/images/data-gathering (2).png' %}"
+                            alt="OSINT"
+                        >
+
+
+                        <div class="service-text">
+
+                            <h4>
+                                OSINT Project
+                            </h4>
+
+
+                            <p>
+
+                                An OSINT investigation platform
+                                that allows users to search for
+                                usernames across popular social
+                                media platforms, perform IP
+                                geolocation lookups, retrieve
+                                WHOIS information, and extract
+                                image metadata.
+
+                            </p>
+
+
+                            <p>
+
+                                The application integrates
+                                Requests, WHOIS, and Pillow (PIL)
+                                to gather publicly available
+                                intelligence and present results
+                                within a centralized cybersecurity
+                                analysis tool.
+
+                            </p>
+
+
+                            <a
+                                href="https://github.com/Mugisha-Ronald/OSINT_Project"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link"
+                            >
+                                See Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 COMPLETED PROJECTS
+                 ================================================= -->
+
+            <section class="services-section">
+
+                <h3 class="subsection-title">
+                    Completed Projects
+                </h3>
+
+
+                <div class="services-grid">
+
+
+                    <!-- DJANGO -->
+
+                    <div class="service-card">
+
+                        <img
+                            src="{% static 'core/images/django.png' %}"
+                            alt="Django"
+                        >
+
+
+                        <div class="service-text">
+
+                            <h4>
+                                Django CRUD Application
+                            </h4>
+
+
+                            <p>
+
+                                A Django Todo application that
+                                allows users to create, read,
+                                update, and delete tasks.
+
+                                It can be used to organize
+                                daily activities and track
+                                completed tasks.
+
+                            </p>
+
+
+                            <a
+                                href="https://github.com/Mugisha-Ronald/Django-CRUD-App"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link"
+                            >
+                                See Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- REACT VIDEO -->
+
+                    <div class="service-card">
+
+                        <img
+                            src="{% static 'core/images/circle.svg' %}"
+                            alt="React"
+                        >
+
+
+                        <div class="service-text">
+
+                            <h4>
+                                React Video Library
+                            </h4>
+
+
+                            <p>
+
+                                A React movie library that
+                                displays queried movies from
+                                an API and allows logged-in
+                                users to purchase movies.
+
+                            </p>
+
+
+                            <a
+                                href="https://github.com/Mugisha-Ronald/myReact-Test-VideoLibrary"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link"
+                            >
+                                See Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- GITHUB GENERATOR -->
+
+                    <div class="service-card">
+
+                        <img
+                            src="{% static 'core/images/github.svg' %}"
+                            alt="GitHub"
+                        >
+
+
+                        <div class="service-text">
+
+                            <h4>
+                                GitHub Profile Generator
+                            </h4>
+
+
+                            <p>
+
+                                A React web application that
+                                searches GitHub profiles and
+                                generates a visually appealing
+                                dashboard using data fetched
+                                from the GitHub API.
+
+                            </p>
+
+
+                            <a
+                                href="https://github.com/Mugisha-Ronald/Github-Profile-Generator"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link"
+                            >
+                                See Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- POLLS API -->
+
+                    <div class="service-card">
+
+                        <img
+                            src="{% static 'core/images/api.webp' %}"
+                            alt="Python API"
+                        >
+
+
+                        <div class="service-text">
+
+                            <h4>
+                                Polls API in Python
+                            </h4>
+
+
+                            <p>
+
+                                A RESTful web service developed
+                                in Python that enables users to
+                                create polls, manage voting
+                                options, cast votes, and retrieve
+                                poll results through API endpoints.
+
+                            </p>
+
+
+                            <a
+                                href="https://github.com/Mugisha-Ronald/Polls_API"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                class="project-link"
+                            >
+                                See Project →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </main>
+
     </div>
 
-    <div class="contact-info">
-        <div class="contact-item">
-            <p class="label">GMAIL</p>
-            <p class="value">ronaldmugisha993@gmail.com</p>
-            <p class="value">mugishacoder@gmail.com</p>
-        </div>
-        <div class="contact-item">
-            <p class="label">LINKEDIN</p>
-            <p class="value">https://www.linkedin.com/in/mugisha-ronald/</p>
-        </div>
-        <div class="contact-item">
-            <p class="label">CONTACT</p>
-            <p class="value">+256779047469</p>
-            <p class="value">+256791695666</p>
-        </div>
+</div>
 
-
-        <div class="contact-item">
-            <p class="label">GITHUB</p>
-           
-
-           <a href="https://github.com/Mugisha-Ronald" style="color: darkred;">Visit My github page</a>
-            
-        </div>
-    </div>
-</aside>
-
-<!-- MAIN CONTENT CARD -->
-<main class="main-content">
-    <nav class="navbar">
-        <ul class="nav-list">
-            <li><a href="#" class="nav-link active">About</a></li>
-            <li><a href="https://docs.google.com/document/d/1PjCGObB2bTA8HItvYuJhJdVI2HHkE-APDANDno8swo8/edit?pli=1&tab=t.0#heading=h.y7d3xdxnr44m" class="nav-link">Resume</a></li>
-            <!-- <li><a href="#" class="nav-link">Portfolio</a></li> -->
-            <!-- <li><a href="#" class="nav-link">Blog</a></li> -->
-            <!-- <li><a href="#" class="nav-link">Contact</a></li> -->
-            <li><a href="{% url 'contact_page' %}" class="nav-link">Contact</a></li>
-        </ul>
-    </nav>
-
-    <section class="about-section">
-        <h2 class="section-title">About Me</h2>
-        <p class="description">I am passionate about solving complex problems through technology and developing solutions that are both innovative and secure. My interests include Software Engineering, Artificial Intelligence, Cybersecurity, Digital Forensics, and Threat Intelligence.</p>
-    </section>
-
-    <section class="services-section">
-        <h3 class="subsection-title">What I'm Doing</h3>
-        <div class="services-grid">
-            <div class="service-card">
-                <img src="{% static 'core/images/cyber-security.png' %}" alt="Forensics">
-                <div class="service-text">
-                    <h4>Digital Forensics Imaging Tool</h4>
-                    <p>One of the projects that I am working on currently is building a very efficient digital forensics imaginng tool, emphasis is on threrading and multi threading, here the aim is ti improve the speed of Imaging, targeting 1TB of data being imaged in less than 30 minutes</p>
-                    <!-- <a href="https://github.com/Mugisha-Ronald/ImagingTool" >see project</a> -->
-                    <a href="https://github.com/Mugisha-Ronald/ImagingTool" style="color: darkred;">See Project</a>
-                </div>
-            </div>
-            <div class="service-card">
-                <img src="{% static 'core/images/antivirus.png' %}"  alt="Malware">
-                <div class="service-text">
-                    <h4>Malware detection and Intelligence Platform</h4>
-                    <p>An AI-Powered Financial Fraud Detection & Malware Threat Intelligence Platform for detecting suspicious financial transactions,
-                        malware-related threats, and supporting cybersecurity investigations.</p>
-                    <a href="https://github.com/Mugisha-Ronald/MinorProject" style="color: darkred;">See Project</a>
-                </div>
-            </div>
-
-             <div class="service-card">
-                <img src="{% static 'core/images/data-gathering (2).png' %}" alt="Pen Testing">
-                <div class="service-text">
-                    <h4>OSINT Project</h4>
-                    
-                    <br>
-                    <p>It allows users to search for usernames across popular social media platforms, perform IP geolocation lookups, retrieve WHOIS information for domains, and extract metadata (EXIF data) from image files for digital investigation purposes.</p>
-                    <br>
-                    <p>The application integrates external services and libraries such as Requests, WHOIS, and Pillow (PIL) to gather publicly available intelligence and present the results within a centralized cybersecurity and OSINT analysis tool.</p>
-                    <a href="https://github.com/Mugisha-Ronald/OSINT_Project" style="color: darkred;">See Project</a>
-                </div>
-            </div>
-
-             <!-- <div class="service-card">
-                <img src="{% static 'core/images/pen-testing-icon.png' %}" alt="Pen Testing">
-                <div class="service-text">
-                    <h4>Penetration Testing</h4>
-                    <p>I conduct authorized penetration testing...</p>
-                </div>
-            </div> -->
-        </div>
-  
-    </section>
-
-
-    <section class="services-section">
-        <h3 class="subsection-title">Done Projects</h3>
-        <div class="services-grid">
-            <div class="service-card">
-                <img src="{% static 'core/images/django.png' %}" alt="Web Dev">
-                <div class="service-text">
-                    <h4>Django CRUD Application</h4>
-                    <p>This is a a django todo app that let you create, Read, update and delete what ever task you could have at hand
-                        It can be used by someone to plan out their day by creating particular tasks and later in the day mark them as completed or not completed</p>
-                        <a href="https://github.com/Mugisha-Ronald/Django-CRUD-App" style="color: darkred;">See Project</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <img src="{% static 'core/images/circle.svg' %}" alt="Web Dev">
-                <div class="service-text">
-                    <h4>React Video Library</h4>
-                    <p>This is a react movie library that display queried movies from an API and allows logged in users to buy a movie</p>
-                    <br>
-                    <br>
-                    <br>
-                        <a href="https://github.com/Mugisha-Ronald/myReact-Test-VideoLibrary" style="color: darkred;">See Project</a>
-                </div>
-            </div>
-
-             <div class="service-card">
-                <img src="{% static 'core/images/github.svg' %}" alt="Web Dev">
-                <div class="service-text">
-                    <h4>Git Hub Profile Generator</h4>
-                    <p>The GitHub Profile Generator is a web application developed using React that allows users to search for GitHub profiles and automatically generate a visually appealing profile dashboard using data fetched from the GitHub API.
-
-The application provides a simplified way of viewing GitHub user information, repositories, followers, and development statistics in a single interface.</p>
-                        <a href="https://github.com/Mugisha-Ronald/Github-Profile-Generator" style="color: darkred;">See Project</a>
-                </div>
-            </div>
-
-
-             <div class="service-card">
-                <img src="{% static 'core/images/api.webp' %}" alt="Web Dev">
-                <div class="service-text">
-                    <h4>Polls API in Python</h4>
-                    <p>The Polls API is a RESTful web service developed in Python that enables users to create polls, manage voting options, cast votes, and retrieve poll results through API endpoints.
-
-The project demonstrates backend application development using Python and API design principles to facilitate efficient data exchange between clients and servers.</p>
-                        <a href="https://github.com/Mugisha-Ronald/Polls_API" style="color: darkred;">See Project</a>
-                </div>
-            </div>
-        </div>
-  
-    </section>
-
-    
-</main>
 {% endblock %}
